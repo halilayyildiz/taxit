@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<f:view contentType="text/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.prime.com.tr/ui" xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:portlet="http://java.sun.com/portlet/components">
+	<h:head />
+	<h:body>
+		<ui:composition>
+			<p:panel header=" " styleClass="navigation">
+				<h:panelGroup layout="block" styleClass="clearfix">
+					<h:form>
+						<f:param name="selectedUserId" value="#{profileBean.selectedUserId}" />
+
+						<h:commandLink action="#{navigationBean.gotoProfileInfoPage}">
+							<h:panelGroup layout="block" styleClass="link" rendered="#{profileBean.renderProfileInfo}">
+								<h:outputText value="#{i18n['navInfo']}" />
+							</h:panelGroup>
+						</h:commandLink>
+
+						<h:commandLink action="#{navigationBean.gotoPlaylistPage}">
+							<h:panelGroup layout="block" styleClass="link" rendered="#{profileBean.renderPlaylists}">
+								<h:outputText value="#{i18n['navPlaylist']}" />
+							</h:panelGroup>
+						</h:commandLink>
+
+						<h:commandLink action="#{navigationBean.gotoPhotoPage}">
+							<h:panelGroup layout="block" styleClass="link" rendered="#{profileBean.renderPhotos}">
+								<h:outputText value="#{i18n['navPhoto']}" />
+							</h:panelGroup>
+						</h:commandLink>
+
+						<h:commandLink action="#{navigationBean.gotoGroupPage}">
+							<h:panelGroup layout="block" styleClass="link" rendered="#{profileBean.renderGroups}">
+								<h:outputText value="#{i18n['navGroup']}" />
+							</h:panelGroup>
+						</h:commandLink>
+
+						<h:commandLink action="#{navigationBean.gotoFriendPage}">
+							<h:panelGroup layout="block" styleClass="link" rendered="#{profileBean.renderFriends}">
+								<h:outputText value="#{i18n['navFriend']}" />
+							</h:panelGroup>
+						</h:commandLink>
+
+						<h:commandLink action="#{navigationBean.gotoFollowerPage}">
+							<h:panelGroup layout="block" styleClass="link" rendered="#{profileBean.renderFollowedBy}">
+								<h:outputText value="#{i18n['navFollower']}" />
+							</h:panelGroup>
+						</h:commandLink>
+
+						<h:commandLink action="#{navigationBean.gotoFolloweePage}">
+							<h:panelGroup layout="block" styleClass="link" rendered="#{profileBean.renderFollows}">
+								<h:outputText value="#{i18n['navFollowee']}" />
+							</h:panelGroup>
+						</h:commandLink>
+
+						<h:commandLink action="#{navigationBean.gotoLikedMusicPage}">
+							<h:panelGroup layout="block" styleClass="link" rendered="#{profileBean.renderLikedMusic}">
+								<h:outputText value="#{i18n['navLikedMusic']}" />
+							</h:panelGroup>
+						</h:commandLink>
+
+						<h:commandLink action="#{navigationBean.gotoEventPage}">
+							<h:panelGroup layout="block" styleClass="link" rendered="#{profileBean.renderEvents}">
+								<h:outputText value="#{i18n['navEvent']}" />
+							</h:panelGroup>
+						</h:commandLink>
+
+					</h:form>
+				</h:panelGroup>
+			</p:panel>
+		</ui:composition>
+	</h:body>
+</f:view>

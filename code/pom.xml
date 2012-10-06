@@ -1,0 +1,65 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.taxit</groupId>
+	<artifactId>taxit</artifactId>
+	<version>0.1</version>
+	<name>Taxit Track System</name>
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>taxit-server</module>
+		<module>taxit-remote</module>
+	</modules>
+
+	<properties>
+		<java.compiler.version>1.6</java.compiler.version>
+	</properties>
+
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<property>
+					<name>env</name>
+					<value>dev</value>
+				</property>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<base.dir>C:/taxit</base.dir>
+				<search.index.folder>searchIndex</search.index.folder>
+				<database.datasource>dataSourceForMYSQL</database.datasource>
+				<maven.test.skip>true</maven.test.skip>
+				<javax.faces.projectstage>Development</javax.faces.projectstage>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>product</id>
+			<activation>
+				<property>
+					<name>env</name>
+					<value>product</value>
+				</property>
+			</activation>
+			<properties>
+				<base.dir>C:/taxit</base.dir>
+				<search.index.folder>searchIndex</search.index.folder>
+				<database.datasource>dataSourceForMYSQL</database.datasource>
+				<maven.test.skip>true</maven.test.skip>
+				<javax.faces.projectstage>Production</javax.faces.projectstage>
+			</properties>
+		</profile>
+	</profiles>
+
+	<repositories>
+		<repository>
+			<id>prime-repo</id>
+			<name>PrimeFaces Maven Repository</name>
+			<url>http://repository.primefaces.org</url>
+			<layout>default</layout>
+		</repository>
+	</repositories>
+
+</project>

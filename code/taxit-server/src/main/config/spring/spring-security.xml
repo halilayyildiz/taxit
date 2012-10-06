@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security" xmlns:beans="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+
+	<global-method-security pre-post-annotations="enabled">
+		<!-- AspectJ pointcut expression that locates our "post" method and applies security that way <protect-pointcut expression="execution(* bigbank.*Service.post*(..))" 
+			access="ROLE_TELLER"/> -->
+	</global-method-security>
+
+
+	<http>
+		<intercept-url pattern="/pages/login**" filters="none" />
+		<intercept-url pattern="/pages/register**" filters="none" />
+		<intercept-url pattern="/pages/station/addstation.xhtml" filters="none" />
+		<intercept-url pattern="/pages/restricted**" filters="none" />
+		<intercept-url pattern="/image/**" filters="none" />
+		<intercept-url pattern="/javax.faces.resource/**" filters="none" />
+		<intercept-url pattern="/api/**" filters="none" />
+		<intercept-url pattern="/pages/admin/**" access="ROLE_ADMIN" />
+		<intercept-url pattern="/pages/**" access="ROLE_OPERATOR, ROLE_ADMIN" />
+		<form-login login-processing-url="/j_spring_security_check" login-page="/pages/login.xhtml" default-target-url="/pages/home.xhtml"
+			authentication-failure-url="/pages/login.xhtml" />
+		<access-denied-handler ref="accessDeniedHandlerWrapper" />
+		<logout logout-url="/j_spring_security_logout" logout-success-url="/" />
+		<remember-me />
+	</http>
+
+	<beans:bean id="accessDeniedHandlerWrapper" class="com.taxit.server.security.AccessDeniedHandlerWrapper">
+		<beans:property name="errorPage" value="/pages/restricted.xhtml" />
+	</beans:bean>
+
+	<authentication-manager alias="authenticationManager">
+		<authentication-provider>
+			<!-- <password-encoder hash="md5" /> -->
+			<jdbc-user-service data-source-ref="dataSourceForMYSQL" authorities-by-username-query="SELECT FLD_USERNAME, FLD_ROLE AS authority FROM TBL_OPERATOR WHERE FLD_USERNAME = ?"
+				users-by-username-query="SELECT FLD_USERNAME, FLD_PASSWORD, 1 AS enabled FROM TBL_OPERATOR WHERE FLD_USERNAME = ?" />
+		</authentication-provider>
+	</authentication-manager>
+
+</beans:beans>

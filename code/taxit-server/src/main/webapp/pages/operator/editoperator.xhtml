@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" 
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" locale="#{localeBean.locale}">
+
+	<h:head />
+	<h:body>
+		<ui:composition template="/pages/template/layout.xhtml">
+			<ui:define name="content">
+				<p:panel styleClass="content" header="#{i18n['editOperator']}">
+
+					<h:panelGroup layout="block" styleClass="edit-operator">
+						<h:form id="form1">
+							<p:messages id="messages" showDetail="true" autoUpdate="true" />
+						</h:form>
+
+						<h:form>
+							<h:panelGroup layout="block" styleClass="info-form">
+								<h:panelGroup layout="block" styleClass="form-item">
+									<h:panelGroup layout="block" styleClass="label">
+										<h:outputLabel value="#{i18n['name']}:" />
+									</h:panelGroup>
+									<h:panelGroup layout="block" styleClass="field">
+										<p:inputText value="#{operatorBean.operator.person.name}" required="true">
+											<f:validateLength minimum="4" maximum="12" />
+											<f:validateRequired />
+										</p:inputText>
+									</h:panelGroup>
+								</h:panelGroup>
+								<h:panelGroup layout="block" styleClass="form-item">
+									<h:panelGroup layout="block" styleClass="label">
+										<h:outputLabel value="#{i18n['surname']}:" />
+									</h:panelGroup>
+									<h:panelGroup layout="block" styleClass="field">
+										<p:inputText value="#{operatorBean.operator.person.surname}" required="true" />
+									</h:panelGroup>
+								</h:panelGroup>
+								<h:panelGroup layout="block" styleClass="form-item">
+									<h:panelGroup layout="block" styleClass="label">
+										<h:outputLabel value="#{i18n['birthdate']}:" />
+									</h:panelGroup>
+									<h:panelGroup layout="block" styleClass="field">
+										<p:calendar value="#{operatorBean.operator.person.birthDate}" yearRange="c-100:c" navigator="true" display="inline" required="true" />
+									</h:panelGroup>
+								</h:panelGroup>
+								<h:panelGroup layout="block" styleClass="form-item">
+									<h:panelGroup layout="block" styleClass="label">
+										<h:outputLabel value="#{i18n['email']}:" />
+									</h:panelGroup>
+									<h:panelGroup layout="block" styleClass="field">
+										<p:inputText value="#{operatorBean.operator.person.email}" required="true">
+											<f:validateLength minimum="6" />
+											<f:validateRequired />
+										</p:inputText>
+									</h:panelGroup>
+								</h:panelGroup>
+								<h:panelGroup layout="block" styleClass="form-item">
+									<h:panelGroup layout="block" styleClass="label">
+										<h:outputLabel value="#{i18n['phoneNumber']}:" />
+									</h:panelGroup>
+									<h:panelGroup layout="block" styleClass="field">
+										<p:inputText value="#{operatorBean.operator.person.phoneNumber}" required="true" />
+									</h:panelGroup>
+								</h:panelGroup>
+
+								<p:spacer width="100%" height="20" />
+
+								<h:panelGroup layout="block" styleClass="form-item">
+									<h:panelGroup layout="block" styleClass="label">
+										<h:outputLabel value="#{i18n['username']}:" />
+									</h:panelGroup>
+									<h:panelGroup layout="block" styleClass="field">
+										<p:inputText value="#{operatorBean.operator.username}" required="true">
+											<f:validateLength minimum="4" maximum="16" />
+											<f:validateRequired />
+										</p:inputText>
+									</h:panelGroup>
+								</h:panelGroup>
+
+								<h:panelGroup layout="block" styleClass="form-item">
+									<h:panelGroup layout="block" styleClass="label">
+										<h:outputLabel value="#{i18n['password']}:" />
+									</h:panelGroup>
+									<h:panelGroup layout="block" styleClass="field">
+										<p:password id="pwd1" value="#{operatorBean.operator.password}" match="pwd2" required="true">
+											<f:validateLength minimum="4" maximum="16" />
+											<f:validateRequired />
+										</p:password>
+									</h:panelGroup>
+								</h:panelGroup>
+
+								<h:panelGroup layout="block" styleClass="form-item">
+									<h:panelGroup layout="block" styleClass="label">
+										<h:outputLabel value="#{i18n['password']}:" />
+									</h:panelGroup>
+									<h:panelGroup layout="block" styleClass="field">
+										<p:password id="pwd2" value="#{operatorBean.operator.password}" required="true">
+											<f:validateLength minimum="4" maximum="16" />
+											<f:validateRequired />
+										</p:password>
+									</h:panelGroup>
+								</h:panelGroup>
+
+								<p:spacer width="100%" height="10" />
+
+								<h:inputHidden value="#{operatorBean.operator.id}" />
+								<h:inputHidden value="#{operatorBean.operator.person.id}" />
+
+								<h:panelGroup layout="block" styleClass="form-item">
+									<p:commandButton styleClass="button" value="#{i18n['save']}" action="#{operatorBean.updateOperator}" ajax="false" />
+								</h:panelGroup>
+
+								<p:spacer width="100%" height="20" />
+							</h:panelGroup>
+						</h:form>
+					</h:panelGroup>
+				</p:panel>
+			</ui:define>
+		</ui:composition>
+	</h:body>
+
+</f:view>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" 
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" locale="#{localeBean.locale}">
+
+	<h:head />
+	<h:body>
+		<ui:composition template="/pages/template/layout.xhtml">
+			<ui:define name="content">
+				<p:panel styleClass="content" header="#{i18n['editStation']}">
+
+					<h:panelGroup layout="block" styleClass="add-station">
+						<h:form id="form1">
+							<p:messages id="messages" showDetail="true" autoUpdate="true" />
+						</h:form>
+
+						<h:form prependId="false">
+
+							<h:panelGroup layout="block" id="selectedStationPanel" styleClass="info-form">
+
+								<h:panelGroup layout="block" styleClass="form-item">
+									<h:panelGroup layout="block" styleClass="label">
+										<h:outputLabel value="#{i18n['name']}:" />
+									</h:panelGroup>
+									<h:panelGroup layout="block" styleClass="field">
+										<p:inputText value="#{stationBean.station.name}" />
+									</h:panelGroup>
+								</h:panelGroup>
+
+								<h:panelGroup layout="block" styleClass="form-item">
+									<h:panelGroup layout="block" styleClass="label">
+										<h:outputLabel value="#{i18n['address']}:" />
+									</h:panelGroup>
+									<h:panelGroup layout="block" styleClass="field">
+										<p:inputText value="#{stationBean.station.address}" />
+									</h:panelGroup>
+								</h:panelGroup>
+
+								<h:panelGroup layout="block" styleClass="form-item">
+									<h:panelGroup layout="block" styleClass="label">
+										<h:outputLabel value="#{i18n['phoneNumber']}:" />
+									</h:panelGroup>
+									<h:panelGroup layout="block" styleClass="field">
+										<p:inputText value="#{stationBean.station.phoneNumber}" />
+									</h:panelGroup>
+								</h:panelGroup>
+
+								<h:panelGroup layout="block" styleClass="form-item">
+									<h:panelGroup layout="block" styleClass="label">
+										<h:outputLabel value="#{i18n['location']}:" />
+									</h:panelGroup>
+									<h:panelGroup layout="block" styleClass="field">
+										<h:panelGroup layout="block" id="stationMapCanvas" style="width:600px;height:400px" />
+										<h:inputHidden id="stationlat" value="#{stationBean.station.location.coordinateX}" />
+										<h:inputHidden id="stationlng" value="#{stationBean.station.location.coordinateY}" />
+									</h:panelGroup>
+								</h:panelGroup>
+
+								<script type="text/javascript">
+									var coordX = document.getElementById('page:content:stationlat').value;
+									var coordY = document.getElementById('page:content:stationlng').value;
+
+									var mapOptions = {
+										center : new google.maps.LatLng(coordX, coordY),
+										zoom : 11,
+										zoomControl : false,
+										streetViewControl : false,
+										mapTypeId : google.maps.MapTypeId.ROADMAP
+									};
+									var stationMap = new google.maps.Map(document.getElementById("page:content:stationMapCanvas"), mapOptions);
+
+									marker = new google.maps.Marker({
+										position : new google.maps.LatLng(coordX, coordY)
+									});
+									marker.setMap(stationMap);
+								</script>
+
+								<h:inputHidden value="#{stationBean.station.id}" />
+								<h:inputHidden value="#{stationBean.station.location.id}" />
+
+								<h:panelGroup layout="block" styleClass="form-item">
+									<p:commandButton styleClass="button" value="#{i18n['update']}" action="#{stationBean.updateStation}" update="@form" />
+								</h:panelGroup>
+
+								<p:spacer width="100%" height="20" />
+							</h:panelGroup>
+						</h:form>
+					</h:panelGroup>
+
+				</p:panel>
+			</ui:define>
+		</ui:composition>
+	</h:body>
+
+</f:view>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" 
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" locale="#{localeBean.locale}">
+
+	<h:head />
+	<h:body>
+		<h:outputStylesheet library="css" name="taxit-main.css" />
+		<h:outputStylesheet library="css" name="taxit-pages.css" />
+		<h:outputStylesheet library="css" name="taxit-map.css" />
+
+		<h:panelGroup layout="block" styleClass="pageBody">
+
+			<ui:insert name="header">
+				<ui:include src="/pages/template/header.xhtml" />
+			</ui:insert>
+
+			<p:panel styleClass="login">
+				<h:panelGroup layout="block" styleClass="">
+					<p:messages id="msgs" showDetail="true" />
+				</h:panelGroup>
+
+				<h:form prependId="false">
+					<h:panelGroup layout="block" styleClass="info-form">
+
+						<p:spacer width="100%" height="10" />
+
+						<h:panelGroup layout="block" styleClass="form-item">
+							<h:panelGroup layout="block" styleClass="label">
+								<h:outputLabel value="#{i18n['username']}:" />
+							</h:panelGroup>
+							<h:panelGroup layout="block" styleClass="field">
+								<p:inputText id="j_username" value="#{userBean.operator.username}" required="true" />
+							</h:panelGroup>
+						</h:panelGroup>
+
+						<h:panelGroup layout="block" styleClass="form-item">
+							<h:panelGroup layout="block" styleClass="label">
+								<h:outputLabel value="#{i18n['password']}:" />
+							</h:panelGroup>
+							<h:panelGroup layout="block" styleClass="field">
+								<p:password id="j_password" value="#{userBean.operator.password}" required="true" />
+							</h:panelGroup>
+						</h:panelGroup>
+
+						<h:panelGroup layout="block" styleClass="form-item">
+							<h:panelGroup layout="block" styleClass="label">
+								<h:outputLabel value="#{i18n['rememberMe']}:" />
+							</h:panelGroup>
+							<h:panelGroup layout="block" styleClass="field">
+								<p:selectBooleanCheckbox id="_spring_security_remember_me" />
+							</h:panelGroup>
+						</h:panelGroup>
+
+						<h:panelGroup layout="block" styleClass="form-item">
+							<p:commandButton id="login" styleClass="button" value="#{i18n['login']}" action="#{userBean.doLogin}" ajax="false" />
+						</h:panelGroup>
+
+						<h:panelGroup layout="block" styleClass="form-item">
+							<h:panelGroup layout="block" styleClass="label">
+								<h:outputLabel value="#{i18n['notHaveAccount']}" />
+							</h:panelGroup>
+							<h:panelGroup layout="block" styleClass="label">
+								<h:outputLink value="#{userBean.contextPath}/pages/register.xhtml">
+									<h:outputText value="#{i18n['register']}"></h:outputText>
+								</h:outputLink>
+							</h:panelGroup>
+						</h:panelGroup>
+
+						<p:spacer width="100%" height="20" />
+					</h:panelGroup>
+				</h:form>
+			</p:panel>
+
+			<ui:insert name="footer">
+				<ui:include src="/pages/template/footer.xhtml" />
+			</ui:insert>
+
+		</h:panelGroup>
+	</h:body>
+
+</f:view>

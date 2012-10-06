@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" locale="#{localeBean.locale}">
+
+	<h:head />
+	<h:body>
+
+		<ui:composition template="/pages/template/layout.xhtml">
+			<ui:define name="content">
+				<f:subview id="mapLayout">
+					<h:panelGroup layout="block" styleClass="taxit map">
+
+						<f:subview id="mapContent">
+							<ui:insert name="mapContent">
+								<ui:include src="/pages/map/template/mapContent.xhtml" />
+							</ui:insert>
+						</f:subview>
+
+						<f:subview id="mapControls">
+							<ui:insert name="mapControls">
+								<ui:include src="/pages/map/template/mapControls.xhtml" />
+							</ui:insert>
+						</f:subview>
+
+					</h:panelGroup>
+				</f:subview>
+			</ui:define>
+		</ui:composition>
+	</h:body>
+</f:view>

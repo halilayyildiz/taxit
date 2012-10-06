@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<faces-config version="2.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+
+	<application>
+		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
+
+		<message-bundle>i18n/i18nFaces</message-bundle>
+		<resource-bundle>
+			<base-name>i18n/i18n</base-name>
+			<var>i18n</var>
+		</resource-bundle>
+
+		<locale-config>
+			<default-locale>en</default-locale>
+			<supported-locale>en</supported-locale>
+			<supported-locale>tr</supported-locale>
+		</locale-config>
+	</application>
+
+	<lifecycle>
+		<phase-listener>com.taxit.server.util.DebugPhaseListener</phase-listener>
+	</lifecycle>
+
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>gotoHomepage</from-outcome>
+			<to-view-id>/pages/home.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+	</navigation-rule>
+
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>gotoAddStationPage</from-outcome>
+			<to-view-id>/pages/station/addstation.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<!-- Navigation Bar -->
+
+	<!-- Navigation Bar End -->
+
+</faces-config>

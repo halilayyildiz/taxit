@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<dirs>
+		<basedir>${base.dir}</basedir>
+		<image>
+			<tiny>/image/tiny</tiny>
+			<small>/image/small</small>
+			<medium>/image/medium</medium>
+			<large>/image/large</large>
+		</image>
+	</dirs>
+	<pagination>
+		<pagesize>10</pagesize>
+	</pagination>
+	<system>
+		<initservice enabled="true" />
+	</system>
+	<search>
+		<indexer enabled="true">
+			<folder>/${search.index.folder}</folder>
+		</indexer>
+		<pagesize>20</pagesize>
+	</search>
+	<roles>
+		<user>Power User</user>
+		<administrator>Administrator</administrator>
+		<moderator>Moderator</moderator>
+		<artist>Artist</artist>
+	</roles>
+	<dataAugmentation>
+		<url>http://192.168.0.100:9080</url>
+		<servicePath>/noon-web/s/ar/</servicePath>
+		<serviceConceptList>extract</serviceConceptList>
+		<serviceConceptDetail>concept</serviceConceptDetail>
+	</dataAugmentation>
+</config>

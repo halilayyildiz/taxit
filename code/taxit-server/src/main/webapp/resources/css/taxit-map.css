@@ -1,0 +1,40 @@
+@CHARSET "UTF-8";
+
+.map {
+	float: left;
+}
+
+.map .controls {
+	width: 1017px;
+	float: left;
+}
+
+.map .content {
+	width: 1017px;
+	float: left;
+}
+
+.map .content .mapCanvas {
+	width: 990px;
+	height: 550px;
+}
+
+.map-legend {
+	float: left;
+	height: 44px;
+	width: 1017px;
+}
+
+.map-legend .map-legend-item {
+	float: left;
+	width: 200px;
+}
+
+.map-legend .map-legend-item .map-legend-item-image {
+	float: left;
+}
+
+.map-legend .map-legend-item .map-legend-item-label {
+	float: left;
+	margin-top: 6px;
+}

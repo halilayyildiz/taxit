@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" 
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" locale="#{localeBean.locale}">
+
+	<h:head />
+	<h:body>
+		<ui:composition template="/pages/template/layout.xhtml">
+			<ui:define name="content">
+				<p:panel styleClass="content" header="#{i18n['reports']}">
+					<h:form id="form1">
+						<p:messages id="messages" showDetail="true" autoUpdate="true" />
+					</h:form>
+
+					<h:panelGroup layout="block" styleClass="report-page">
+						<h:form prependId="false">
+							<h:panelGroup layout="block" styleClass="info-form">
+								<h:panelGroup layout="block" styleClass="form-item">
+									<h:panelGroup layout="block" styleClass="label">
+										<h:outputLabel value="#{i18n['taxi']}:" />
+									</h:panelGroup>
+									<h:panelGroup layout="block" styleClass="field">
+										<p:selectOneMenu value="#{reportBean.selectedTaxi}" effect="fade" converter="taxiConverter">
+											<f:selectItem itemLabel="#{i18n['all']}" itemValue="" />
+											<f:selectItems value="#{taxiBean.allTaxi}" var="taxi" itemLabel="#{taxi.plate}" itemValue="#{taxi}" />
+											<p:ajax update="taxiReportPanel" listener="#{reportBean.handleTaxiSelect}" />
+										</p:selectOneMenu>
+									</h:panelGroup>
+								</h:panelGroup>
+							</h:panelGroup>
+
+							<p:spacer width="100%" height="20" />
+
+							<h:panelGroup layout="block" id="taxiReportPanel" styleClass="info-form">
+								<h:panelGroup layout="block" styleClass="form-item">
+									<p:dataTable id="taxiStatusTable" var="locationHistory" value="#{reportBean.taxiLocationHistory}" paginator="true" rows="20"
+										paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}">
+
+										<p:column>
+											<f:facet name="header">
+												<h:outputText value="#{i18n['date']}" />
+											</f:facet>
+											<h:outputText value="#{locationHistory.storeDate}">
+												<f:convertDateTime type="date" pattern="yyyy-MM-dd kk:mm:ss" timeZone="GMT+3" />
+											</h:outputText>
+										</p:column>
+
+										<p:column>
+											<f:facet name="header">
+												<h:outputText value="#{i18n['plate']}" />
+											</f:facet>
+											<h:outputText value="#{locationHistory.taxi.plate}" />
+										</p:column>
+
+										<p:column>
+											<f:facet name="header">
+												<h:outputText value="#{i18n['latitude']}" />
+											</f:facet>
+											<h:outputText value="#{locationHistory.location.coordinateX}" />
+										</p:column>
+
+										<p:column>
+											<f:facet name="header">
+												<h:outputText value="#{i18n['longtitude']}" />
+											</f:facet>
+											<h:outputText value="#{locationHistory.location.coordinateY}" />
+										</p:column>
+
+										<p:column>
+											<f:facet name="header">
+												<h:outputText value="#{i18n['status']}" />
+											</f:facet>
+											<h:outputText value="#{locationHistory.state}" />
+										</p:column>
+									</p:dataTable>
+
+									<p:spacer width="100%" height="20" />
+
+								</h:panelGroup>
+							</h:panelGroup>
+
+							<p:panel style="float:right; margin-right:10px;">
+								<h:commandLink value="Download as PDF ">
+									<p:graphicImage value="/image/pdf.png" />
+									<p:dataExporter type="pdf" target="taxiStatusTable" fileName="taxi-report" style="margin-bottom:10px;" />
+								</h:commandLink>
+							</p:panel>
+						</h:form>
+					</h:panelGroup>
+
+				</p:panel>
+			</ui:define>
+		</ui:composition>
+	</h:body>
+
+</f:view>

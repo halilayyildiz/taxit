@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" 
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" locale="#{localeBean.locale}">
+
+	<h:head />
+	<h:body>
+		<ui:composition template="/pages/template/layout.xhtml">
+			<ui:define name="content">
+				<p:panel styleClass="content" header="#{i18n['deleteDriver']}">
+
+					<h:panelGroup layout="block" styleClass="delete-driver">
+						<h:form id="form1">
+							<p:messages id="messages" showDetail="true" autoUpdate="true" />
+						</h:form>
+
+						<h:form>
+							<h:panelGroup layout="block" styleClass="info-form">
+								<h:panelGroup layout="block" styleClass="form-item">
+									<h:panelGroup layout="block" styleClass="label">
+										<h:outputLabel value="#{i18n['driver']}:" />
+									</h:panelGroup>
+									<h:panelGroup layout="block" styleClass="field">
+										<p:selectOneListbox value="#{driverBean.selectedDriver}" effect="fade" converter="driverConverter" style="height:300px;width:200px;">
+											<f:selectItems value="#{driverBean.allDrivers}" var="driver" itemLabel="#{driver.person.name} #{driver.person.surname}" itemValue="#{driver}" />
+											<p:ajax update="selectedDriverPanel" listener="#{driverBean.handleDriverSelect}" />
+										</p:selectOneListbox>
+									</h:panelGroup>
+								</h:panelGroup>
+							</h:panelGroup>
+
+							<p:spacer width="100%" height="10" />
+
+							<h:panelGroup layout="block" id="selectedDriverPanel" styleClass="info-form">
+
+								<h:inputHidden value="#{driverBean.driver.id}" />
+								<h:inputHidden value="#{driverBean.driver.person.id}" />
+
+								<h:panelGroup layout="block" styleClass="form-item">
+									<p:commandButton styleClass="button" value="#{i18n['delete']}" action="#{driverBean.deleteDriver}" update="@form" />
+								</h:panelGroup>
+
+								<p:spacer width="100%" height="20" />
+							</h:panelGroup>
+						</h:form>
+					</h:panelGroup>
+
+				</p:panel>
+			</ui:define>
+		</ui:composition>
+	</h:body>
+
+</f:view>

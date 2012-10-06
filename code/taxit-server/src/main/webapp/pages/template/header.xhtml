@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" locale="#{localeBean.locale}">
+
+	<h:head />
+	<h:body>
+		<ui:composition>
+			<p:panel styleClass="header">
+				<h:panelGroup layout="block" styleClass="">
+					<h:panelGroup styleClass="noon-logo span-16">
+						<h:outputLink value="#{userBean.contextPath}/pages/home.xhtml">
+							<h:graphicImage library="image" name="taxit-logo.png"></h:graphicImage>
+						</h:outputLink>
+					</h:panelGroup>
+					<h:panelGroup styleClass="user-info span-6 last">
+						<h:panelGroup layout="block" styleClass="langSelect span-6 last">
+							<h:form>
+								<h:selectOneMenu value="#{localeBean.language}" valueChangeListener="#{localeBean.languageChanged}" onchange="submit()">
+									<f:selectItem itemValue="en" itemLabel="English" />
+									<f:selectItem itemValue="tr" itemLabel="Türkçe" />
+								</h:selectOneMenu>
+							</h:form>
+						</h:panelGroup>
+						<h:panelGroup layout="block" styleClass="logout span-6 last" rendered="#{userBean.auth.authenticated}">
+							<h:panelGroup id="logoutLink">
+								<h:outputLink value="#{userBean.contextPath}/j_spring_security_logout">
+									<h:outputText value=" (logout)"></h:outputText>
+								</h:outputLink>
+							</h:panelGroup>
+							<h:panelGroup id="operatorUsername">
+								<h:outputText value="#{userBean.auth.name}"></h:outputText>
+							</h:panelGroup>
+						</h:panelGroup>
+					</h:panelGroup>
+				</h:panelGroup>
+
+				<h:panelGroup layout="block" styleClass="span-24 hr" />
+			</p:panel>
+		</ui:composition>
+	</h:body>
+</f:view>

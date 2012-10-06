@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" locale="#{localeBean.locale}">
+
+	<h:head />
+	<h:body>
+		<ui:composition>
+			<p:panel styleClass="navigation">
+				<h:form prependId="false">
+					<p:menubar styleClass="menuItemContainer">
+
+						<p:menuitem value="#{i18n['homepage']}" icon="ui-icon ui-icon-home" url="/pages/home.xhtml" styleClass="menuItem" />
+
+						<p:submenu label="#{i18n['operations']}" icon="ui-icon ui-icon-wrench">
+							<p:menuitem value="#{i18n['editStation']}" icon="ui-icon ui-icon-carat-1-e" url="/pages/station/editstation.xhtml" styleClass="menuItem" />
+							<p:menuitem value="#{i18n['editOperator']}" icon="ui-icon ui-icon-carat-1-e" url="/pages/operator/editoperator.xhtml" styleClass="menuItem" />
+							<p:menuitem value="#{i18n['addTaxi']}" icon="ui-icon ui-icon-carat-1-e" url="/pages/taxi/addtaxi.xhtml" styleClass="menuItem" />
+							<p:menuitem value="#{i18n['addDriver']}" icon="ui-icon ui-icon-carat-1-e" url="/pages/driver/adddriver.xhtml" styleClass="menuItem" />
+							<p:menuitem value="#{i18n['editTaxi']}" icon="ui-icon ui-icon-carat-1-e" url="/pages/taxi/edittaxi.xhtml" styleClass="menuItem" />
+							<p:menuitem value="#{i18n['editDriver']}" icon="ui-icon ui-icon-carat-1-e" url="/pages/driver/editdriver.xhtml" styleClass="menuItem" />
+							<p:menuitem value="#{i18n['deleteTaxi']}" icon="ui-icon ui-icon-carat-1-e" url="/pages/taxi/deletetaxi.xhtml" styleClass="menuItem" />
+							<p:menuitem value="#{i18n['deleteDriver']}" icon="ui-icon ui-icon-carat-1-e" url="/pages/driver/deletedriver.xhtml" styleClass="menuItem" />
+						</p:submenu>
+
+						<p:menuitem value="#{i18n['reports']}" icon="ui-icon ui-icon-document" url="/pages/report/reports.xhtml" styleClass="menuItem" />
+
+					</p:menubar>
+
+					<h:inputHidden id="ctx" value="#{navigationBean.contextPath}" />
+				</h:form>
+			</p:panel>
+		</ui:composition>
+	</h:body>
+</f:view>

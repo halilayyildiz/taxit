@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" 
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" locale="#{localeBean.locale}">
+
+	<h:head />
+	<h:body>
+		<ui:composition template="/pages/template/layout.xhtml">
+			<ui:define name="content">
+				<p:panel styleClass="content" header="#{i18n['editDriver']}">
+
+					<h:panelGroup layout="block" styleClass="edit-driver">
+						<h:form id="form1">
+							<p:messages id="messages" showDetail="true" autoUpdate="true" />
+						</h:form>
+
+						<h:form>
+							<h:panelGroup layout="block" styleClass="info-form">
+								<h:panelGroup layout="block" styleClass="form-item">
+									<h:panelGroup layout="block" styleClass="label">
+										<h:outputLabel value="#{i18n['driver']}:" />
+									</h:panelGroup>
+									<h:panelGroup layout="block" styleClass="field">
+										<p:selectOneMenu value="#{driverBean.selectedDriver}" effect="fade" converter="driverConverter">
+											<f:selectItem itemLabel="#{i18n['selectDriver']}" itemValue="" />
+											<f:selectItems value="#{driverBean.allDrivers}" var="driver" itemLabel="#{driver.person.name} #{driver.person.surname}" itemValue="#{driver}" />
+											<p:ajax update="selectedDriverPanel" listener="#{driverBean.handleDriverSelect}" />
+										</p:selectOneMenu>
+									</h:panelGroup>
+								</h:panelGroup>
+							</h:panelGroup>
+
+							<p:spacer width="100%" height="20" />
+
+							<h:panelGroup layout="block" id="selectedDriverPanel" styleClass="info-form">
+								<h:panelGroup layout="block" styleClass="form-item">
+									<h:panelGroup layout="block" styleClass="label">
+										<h:outputLabel value="#{i18n['name']}:" />
+									</h:panelGroup>
+									<h:panelGroup layout="block" styleClass="field">
+										<p:inputText value="#{driverBean.driver.person.name}" required="true" />
+									</h:panelGroup>
+								</h:panelGroup>
+								<h:panelGroup layout="block" styleClass="form-item">
+									<h:panelGroup layout="block" styleClass="label">
+										<h:outputLabel value="#{i18n['surname']}:" />
+									</h:panelGroup>
+									<h:panelGroup layout="block" styleClass="field">
+										<p:inputText value="#{driverBean.driver.person.surname}" required="true" />
+									</h:panelGroup>
+								</h:panelGroup>
+								<h:panelGroup layout="block" styleClass="form-item">
+									<h:panelGroup layout="block" styleClass="label">
+										<h:outputLabel value="#{i18n['birthdate']}:" />
+									</h:panelGroup>
+									<h:panelGroup layout="block" styleClass="field">
+										<p:calendar id="cal" value="#{driverBean.driver.person.birthDate}" yearRange="c-100:c" navigator="true" display="inline" required="true" />
+									</h:panelGroup>
+								</h:panelGroup>
+								<h:panelGroup layout="block" styleClass="form-item">
+									<h:panelGroup layout="block" styleClass="label">
+										<h:outputLabel value="#{i18n['email']}:" />
+									</h:panelGroup>
+									<h:panelGroup layout="block" styleClass="field">
+										<p:inputText value="#{driverBean.driver.person.email}" required="true" />
+									</h:panelGroup>
+								</h:panelGroup>
+								<h:panelGroup layout="block" styleClass="form-item">
+									<h:panelGroup layout="block" styleClass="label">
+										<h:outputLabel value="#{i18n['phoneNumber']}:" />
+									</h:panelGroup>
+									<h:panelGroup layout="block" styleClass="field">
+										<p:inputText value="#{driverBean.driver.person.phoneNumber}" required="true" />
+									</h:panelGroup>
+								</h:panelGroup>
+
+								<h:panelGroup layout="block" styleClass="form-item">
+									<h:panelGroup layout="block" styleClass="label">
+										<h:outputLabel value="#{i18n['taxi']}:" />
+									</h:panelGroup>
+									<h:panelGroup layout="block" styleClass="field">
+										<p:selectOneMenu value="#{driverBean.driver.taxi}" effect="fade" converter="taxiConverter" required="true">
+											<f:selectItem itemLabel="" itemValue="" />
+											<f:selectItems value="#{taxiBean.allTaxi}" var="taxi" itemLabel="#{taxi.plate}" itemValue="#{taxi}" />
+										</p:selectOneMenu>
+									</h:panelGroup>
+								</h:panelGroup>
+
+								<h:inputHidden value="#{driverBean.driver.id}" />
+								<h:inputHidden value="#{driverBean.driver.person.id}" />
+
+								<h:panelGroup layout="block" styleClass="form-item">
+									<p:commandButton styleClass="button" value="#{i18n['update']}" action="#{driverBean.updateDriver}" update="@form" />
+								</h:panelGroup>
+
+								<p:spacer width="100%" height="20" />
+							</h:panelGroup>
+						</h:form>
+					</h:panelGroup>
+
+				</p:panel>
+			</ui:define>
+		</ui:composition>
+	</h:body>
+
+</f:view>

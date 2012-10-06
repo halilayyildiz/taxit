@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" locale="#{localeBean.locale}">
+
+	<h:head />
+	<h:body>
+
+		<ui:composition template="/pages/map/template/mapLayout.xhtml">
+			<ui:define name="mapContent">
+				<h:outputScript library="js" name="taxit.js" />
+
+				<p:panel styleClass="content">
+
+					<h:form prependId="false">
+						<h:panelGroup layout="block" id="mapCanvas" styleClass="mapCanvas" />
+					</h:form>
+				</p:panel>
+
+			</ui:define>
+
+			<ui:define name="mapControls">
+				<p:panel styleClass="map-legend">
+
+					<h:panelGroup layout="block" styleClass="map-legend-item">
+						<h:panelGroup layout="block" styleClass="map-legend-item-image">
+							<h:graphicImage url="/image/taxi-green.png" />
+						</h:panelGroup>
+						<h:panelGroup layout="block" styleClass="map-legend-item-label">
+							<h:outputLabel value="#{i18n['taxiIsFree']}" />
+						</h:panelGroup>
+					</h:panelGroup>
+					<h:panelGroup layout="block" styleClass="map-legend-item">
+						<h:panelGroup layout="block" styleClass="map-legend-item-image">
+							<h:graphicImage url="/image/taxi-yellow.png" />
+						</h:panelGroup>
+						<h:panelGroup layout="block" styleClass="map-legend-item-label">
+							<h:outputLabel value="#{i18n['taxiIsOccupied']}" />
+						</h:panelGroup>
+					</h:panelGroup>
+					<h:panelGroup layout="block" styleClass="map-legend-item">
+						<h:panelGroup layout="block" styleClass="map-legend-item-image">
+							<h:graphicImage url="/image/taxi-black.png" />
+						</h:panelGroup>
+						<h:panelGroup layout="block" styleClass="map-legend-item-label">
+							<h:outputLabel value="#{i18n['taxiIsNotWorking']}" />
+						</h:panelGroup>
+					</h:panelGroup>
+					<h:panelGroup layout="block" styleClass="map-legend-item">
+						<h:panelGroup layout="block" styleClass="map-legend-item-image">
+							<h:graphicImage url="/image/taxi-red.png" />
+						</h:panelGroup>
+						<h:panelGroup layout="block" styleClass="map-legend-item-label">
+							<h:outputLabel value="#{i18n['taxiIsEmergency']}" />
+						</h:panelGroup>
+					</h:panelGroup>
+
+
+
+				</p:panel>
+			</ui:define>
+		</ui:composition>
+	</h:body>
+</f:view>

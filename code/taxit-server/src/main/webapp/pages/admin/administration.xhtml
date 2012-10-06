@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" 
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui" locale="#{localeBean.locale}">
+
+	<h:head />
+	<h:body>
+		<ui:composition template="/pages/template/layout.xhtml">
+			<ui:define name="content">
+				<h:panelGroup layout="block" styleClass="adminPanel span-24">
+					<h:form>
+						<h:panelGroup layout="block" styleClass="span-24">
+							<h:panelGroup layout="block" styleClass="span-24">
+								<p:messages id="msgs" showDetail="true" />
+							</h:panelGroup>
+						</h:panelGroup>
+
+						<h:panelGroup layout="block" id="resultSelectPanel" styleClass="line span-24">
+							<h:panelGroup styleClass="label span-4">
+								<h:outputLabel for="selectResult">
+									<h:outputText value="#{i18n['selectResult']}"></h:outputText>
+								</h:outputLabel>
+							</h:panelGroup>
+
+							<h:panelGroup styleClass="column label">
+								<h:outputLink value="#{adminBean.nerResultPage}">
+									<h:outputText value="#{i18n['adminNerResult']}" />
+								</h:outputLink>
+							</h:panelGroup>
+							<h:panelGroup styleClass="column label">
+								<h:outputLink value="#{adminBean.relatedResultPage}">
+									<h:outputText value="#{i18n['adminRelatedResult']}" />
+								</h:outputLink>
+							</h:panelGroup>
+							<h:panelGroup styleClass="column label">
+								<h:outputLink value="#{adminBean.recomResultPage}">
+									<h:outputText value="#{i18n['adminRecomResult']}" />
+								</h:outputLink>
+							</h:panelGroup>
+						</h:panelGroup>
+
+						<h:panelGroup layout="block" id="administrationPanel" styleClass="line span-24">
+							<h:panelGroup styleClass="label span-4">
+								<h:outputLabel for="systemAdministration">
+									<h:outputText value="#{i18n['administration']}"></h:outputText>
+								</h:outputLabel>
+							</h:panelGroup>
+
+							<h:panelGroup id="systemAdministration" styleClass="column label">
+
+								<p:commandLink value="#{i18n['populateSystemPolls']}" execute="@form" render="@form" action="#{adminBean.populateSystemPolls}" />
+
+							</h:panelGroup>
+						</h:panelGroup>
+
+						<h:panelGroup layout="block" styleClass="space-20 span-24" />
+					</h:form>
+				</h:panelGroup>
+			</ui:define>
+		</ui:composition>
+	</h:body>
+
+</f:view>
