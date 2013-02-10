@@ -13,12 +13,13 @@
 	</modules>
 
 	<properties>
-		<java.compiler.version>1.6</java.compiler.version>
+		<java.compiler.version>1.7</java.compiler.version>
 	</properties>
 
 	<profiles>
 		<profile>
 			<id>dev</id>
+
 			<activation>
 				<property>
 					<name>env</name>
